@@ -14,8 +14,10 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
-        return view('products', compact('products'));
+        $products = Product::latest()->paginate(5);
+
+        return view('products.index',compact('products'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -36,32 +38,15 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->hasfile('image'))
-        {
-            $file = $request->file('image');
-            $name=time().$file->getClientOriginalName();
-            $file->move(public_path().'/images/products/', $name);
-        }
-        else{
-            return redirect('products')->with('message','Select Your Image');
-        }
+        $request->validate([
+            'name' => 'required',
+            'detail' => 'required',
+            'image' => 'required',
+        ]);
 
-        $created = new Product();
-        $created->title = $request->title;
-        $created->description = $request->description;
-        $created->keywords = $request->keywords;
-        $created->details = $request->details;
-        $created->status = $request->status;
-        $created->availability = $request->availability;
-        $created->price = $request->price;
-        $created->image = $name;
-        $created->brand_id = $request->brand_id;
-        $created->category_id = $request->category_id;
-        $created->user_id = $request->user_id;
-        $created->save();
-        if($created){
-            return redirect('products')->with('message','Product Successfully add');
-        }
+        Product::create($request->all());
+        return redirect()->route('products')
+            ->with('success','Product created successfully.');
     }
 
     /**
@@ -72,7 +57,7 @@ class ProductsController extends Controller
      */
     public function show(Product $product)
     {
-        return view('product', compact('product'))
+        return view('product',compact('product'));
 
     }
 
@@ -84,7 +69,7 @@ class ProductsController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('edit-products');
+        return view('edit-products',compact('product'));
     }
 
     /**
@@ -96,7 +81,16 @@ class ProductsController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'detail' => 'required',
+            'image' => 'required',
+        ]);
+
+        $product->update($request->all());
+
+        return redirect()->route('products')
+            ->with('success','Product updated successfully');
     }
 
     /**
@@ -107,6 +101,9 @@ class ProductsController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+
+        return redirect()->route('products')
+            ->with('success','Product deleted successfully');
     }
 }
