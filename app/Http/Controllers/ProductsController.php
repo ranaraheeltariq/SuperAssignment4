@@ -84,7 +84,7 @@ class ProductsController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('ed')
+        return view('edit-products');
     }
 
     /**
