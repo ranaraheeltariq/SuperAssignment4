@@ -14,10 +14,4 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('products','ProductsController@index');
-Route::get('product/{id}', 'ProductsController@show');
-Route::get('add-product', 'Products@controller@create');
-Route::post('product', 'ProductsController@store');
-Route::get('edit-product/{id}', 'ProductsController@edit');
-Route::post('edit-product/{id}', 'ProductsController@update');
-Route::post('destroy-products/{id}', 'ProductsController@destroy');
+
