@@ -35,7 +35,14 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+            'capacity'=> 'required|integer',
+            'states' => 'required',
+            'hasac' => 'required'
+        ]);
+        $room = Room::create($request->all());
+        return redirect('/')->with('success', 'Room has been added');
     }
 
     /**
