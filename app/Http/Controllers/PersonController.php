@@ -8,11 +8,6 @@ use Illuminate\Http\Request;
 
 class PersonController extends Controller
 {
-    public function sum()
-    {
-        $sum = DB::select('select ')
-        return $sum;
-    }
     /**
      * Display a listing of the resource.
      *
@@ -49,8 +44,13 @@ class PersonController extends Controller
             'cnic' => 'required',
             'institute' => 'required'
         ]);
+        if(Room::find($request->room_id)->capacity <= Room::first()->person->count()) {
             $person = Person::create($request->all());
             return redirect('/')->with('success', 'People has been added');
+        }
+        else{
+            return redirect('/')->with('success', 'Room Capacity is FUll');
+        }
     }
 
     /**
