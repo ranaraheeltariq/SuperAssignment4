@@ -18,7 +18,7 @@
                 </div>
                 <div class="ibox-body">
                     <ul class="media-list media-list-divider scroller mr-2" data-height="470px">
-                        @foreach($persons = App\Person::all() as $person)
+                        @foreach($persons = App\Person::latest()->get() as $person)
                         <li class="media">
                             <div class="media-body d-flex">
                                 <div class="flex-1">
@@ -71,7 +71,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ($rooms=App\Room::all() as $room)
+                            @foreach ($rooms=App\Room::latest()->get() as $room)
                             <tr>
                                 <td class="pl-4">
                                     <div class="flexbox-b">

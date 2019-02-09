@@ -44,7 +44,7 @@ class PersonController extends Controller
             'cnic' => 'required',
             'institute' => 'required'
         ]);
-        if(Room::find($request->room_id)->capacity <= Room::first()->person->count()) {
+        if(Room::find($request->room_id)->person->count() < Room::find($request->room_id)->capacity ) {
             $person = Person::create($request->all());
             return redirect('/')->with('success', 'People has been added');
         }
