@@ -24,4 +24,3 @@ Route::post('/add-person', 'PersonController@store');
 Route::get('/edit-person/{person}', 'PersonController@edit');
 Route::put('/edit-person/{person}', 'PersonController@update');
 Route::delete('person/{person}', 'PersonController@destroy');
-Route::get('sum', 'PersonController@sum');

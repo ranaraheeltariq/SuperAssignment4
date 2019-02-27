@@ -15,12 +15,22 @@
                                     <div class="form-group mb-4">
                                         <label>Room Name:</label>
                                         <input class="form-control" name="name" type="text" placeholder="Enter Room Name">
+                                        @if ($errors->has('name'))
+                                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group mb-4">
                                         <label>Room Capacity</label>
-                                        <input class="form-control" name="capacity" type="number" placeholder="Enter Room Capacity">
+                                        <input class="form-control{{ $errors->has('capacity') ? ' is-invalid' : '' }}" name="capacity" type="number" placeholder="Enter Room Capacity">
+                                        @if ($errors->has('capacity'))
+                                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('capacity') }}</strong>
+                                    </span>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -36,7 +46,11 @@
                                         <input type="radio" name="states" value="NonFurnished">
                                         <span class="input-span"></span>Non-Furnished</label>
                                 </div>
-
+                                @if ($errors->has('states'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('states') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                                 </div>
 
@@ -51,6 +65,11 @@
                                                 <input type="radio" name="hasac" value="no">
                                                 <span class="input-span"></span>No</label>
                                         </div>
+                                        @if ($errors->has('hasac'))
+                                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('hasac') }}</strong>
+                                    </span>
+                                        @endif
                                     </div>
                                 </div>
 
