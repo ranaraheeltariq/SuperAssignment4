@@ -14,13 +14,21 @@
 Route::get('/', function () {
     return view('home');
 });
+
+Route::get('/rooms','RoomController@index');
 Route::get('/add-room', 'RoomController@create');
 Route::post('/room','RoomController@store');
 Route::get('/edit-room/{room}', 'RoomController@edit');
 Route::put('/edit-room/{room}', 'RoomController@update');
 Route::delete('room/{room}', 'RoomController@destroy');
+
+Route::get('/persons','PersonController@index');
 Route::get('/add-person','PersonController@create');
 Route::post('/add-person', 'PersonController@store');
 Route::get('/edit-person/{person}', 'PersonController@edit');
 Route::put('/edit-person/{person}', 'PersonController@update');
 Route::delete('person/{person}', 'PersonController@destroy');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

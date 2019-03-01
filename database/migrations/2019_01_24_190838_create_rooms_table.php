@@ -17,8 +17,8 @@ class CreateRoomsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('capacity');
-            $table->enum('states',['Furnished', 'NonFurnished']);
-            $table->enum('hasac', ['yes', 'no']);
+            $table->enum('states',['Furnished', 'Non Furnished']);
+            $table->enum('hasac', ['Yes', 'No']);
             $table->timestamps();
         });
     }

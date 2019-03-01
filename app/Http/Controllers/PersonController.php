@@ -15,7 +15,9 @@ class PersonController extends Controller
      */
     public function index()
     {
-        //
+        $persons = Person::all();
+        return view('persons',compact('persons'));
+
     }
 
     /**
@@ -49,7 +51,7 @@ class PersonController extends Controller
             return redirect('/')->with('success', 'People has been added');
         }
         else{
-            return redirect('/')->with('success', 'Room Capacity is FUll');
+            return redirect('/persons')->with('success', 'Room Capacity is FUll');
         }
     }
 
@@ -93,7 +95,7 @@ class PersonController extends Controller
             'institute' => 'required'
         ]);
         $person->update($request->all());
-            return redirect('/')->with('success', 'People has been Updated');
+            return redirect('/persons')->with('success', 'People has been Updated');
     }
 
     /**
@@ -105,6 +107,6 @@ class PersonController extends Controller
     public function destroy(Person $person)
     {
         $person->delete();
-        return redirect('/')->with('success', 'People has been Deleted');
+        return redirect('/persons')->with('success', 'People has been Deleted');
     }
 }

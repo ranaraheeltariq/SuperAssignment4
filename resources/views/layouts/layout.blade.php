@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width initial-scale=1.0">
     <title>@yield('title') | Super Web Assignment 4</title>
+    @section('cs')
     <!-- GLOBAL MAINLY STYLES-->
     <link href="/assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="/assets/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
@@ -14,9 +15,11 @@
     <link href="/assets/vendors/toastr/toastr.min.css" rel="stylesheet" />
     <link href="/assets/vendors/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet" />
     <!-- PLUGINS STYLES-->
+
     <!-- THEME STYLES-->
     <link href="/assets/css/main.min.css" rel="stylesheet" />
     <!-- PAGE LEVEL STYLES-->
+        @show
 </head>
 
 <body class="fixed-navbar">
@@ -105,12 +108,20 @@
                         <span class="nav-label">Dashboards</span></a>
                 </li>
                 <li>
-                    <a href="/add-room"><i class="sidebar-item-icon ti-wallet"></i>
-                        <span class="nav-label">Rooms</span></a>
+                    <a href="javascript:;"><i class="sidebar-item-icon ti-wallet"></i>
+                        <span class="nav-label">Rooms</span><i class="fa fa-angle-left arrow"></i></a>
+                    <ul class="nav-2-level collapse">
+                        <li><a href="/rooms">View All</a></li>
+                        <li><a href="/add-room">Add Room</a></li>
+                    </ul>
                 </li>
                 <li>
-                    <a href="/add-person"><i class="sidebar-item-icon ti-user"></i>
-                        <span class="nav-label">Persons</span></a>
+                    <a href="javascript:;"><i class="sidebar-item-icon ti-user"></i>
+                        <span class="nav-label">Persons</span><i class="fa fa-angle-left arrow"></i></a>
+                    <ul class="nav-2-level collapse">
+                        <li><a href="/persons">View All</a></li>
+                        <li><a href="/add-person">Add Person</a></li>
+                    </ul>
                 </li>
 
             </ul>
@@ -155,6 +166,7 @@
     <div class="page-preloader">Loading</div>
 </div>
 <!-- END PAGA BACKDROPS-->
+@section('js')
         <!-- CORE PLUGINS-->
         <script src="/assets/vendors/jquery/dist/jquery.min.js"></script>
         <script src="/assets/vendors/popper.js/dist/umd/popper.min.js"></script>
@@ -166,8 +178,10 @@
         <script src="/assets/vendors/jquery-validation/dist/jquery.validate.min.js"></script>
         <script src="/assets/vendors/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
         <!-- PAGE LEVEL PLUGINS-->
+    <script src="assets/vendors/dataTables/datatables.min.js"></script>
         <!-- CORE SCRIPTS-->
         <script src="/assets/js/app.min.js"></script>
         <!-- PAGE LEVEL SCRIPTS-->
+@show
 </body>
 </html>

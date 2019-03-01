@@ -4,12 +4,36 @@
 <!-- START PAGE CONTENT-->
 <div class="page-content fade-in-up">
 
+        <div class="row mb-4">
+            <div class="col-lg-6 col-md-6">
+                <div class="card mb-4">
+                    <div class="card-body flexbox-b">
+                        <div class="easypie mr-4" data-percent="{{App\Person::count()}}" data-bar-color="#18C5A9" data-size="80" data-line-width="8">
+                            <span class="easypie-data text-success" style="font-size:28px;"><i class="ti-user"></i></span>
+                        </div>
+                        <div>
+                            <h3 class="font-strong text-success">{{App\Person::count()}}</h3>
+                            <div class="text-muted">Total User</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <div class="col-lg-6 col-md-6">
+                <div class="card mb-4">
+                    <div class="card-body flexbox-b">
+                        <div class="easypie mr-4" data-percent="{{App\Room::count()}}" data-bar-color="#ff4081" data-size="80" data-line-width="8">
+                            <span class="easypie-data text-pink" style="font-size:32px;"><i class="la la-home"></i></span>
+                        </div>
+                        <div>
+                            <h3 class="font-strong text-pink">{{App\Room::count()}}</h3>
+                            <div class="text-muted">Total Rooms</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    @if(session('success'))
-        <div class="alert alert-primary alert-dismissable fade show has-icon"><i class="la la-check alert-icon"></i>
-            <button class="close" data-dismiss="alert" aria-label="Close"></button><strong>Well done!</strong><br>{{session('success')}}</div>
-    @endif
     <div class="row">
         <div class="col-xl-12">
             <div class="ibox ibox-fullheight">
@@ -18,7 +42,7 @@
                 </div>
                 <div class="ibox-body">
                     <ul class="media-list media-list-divider scroller mr-2" data-height="470px">
-                        @foreach($persons = App\Person::latest()->get() as $person)
+                        @foreach($persons = App\Person::latest()->limit(5)->get() as $person)
                         <li class="media">
                             <div class="media-body d-flex">
                                 <div class="flex-1">
@@ -71,7 +95,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ($rooms=App\Room::latest()->get() as $room)
+                            @foreach ($rooms=App\Room::latest()->limit(5)->get() as $room)
                             <tr>
                                 <td class="pl-4">
                                     <div class="flexbox-b">
@@ -114,4 +138,12 @@
     </div>
 </div>
 <!-- END PAGE CONTENT-->
+@stop
+@section('js')
+    @parent
+    <script src="assets/vendors/chart.js/dist/Chart.min.js"></script>
+    <script src="assets/vendors/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
+    <script src="assets/vendors/jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
+    <script src="assets/vendors/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="assets/js/scripts/dashboard_ecommerce.js"></script>
 @stop

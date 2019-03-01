@@ -15,7 +15,8 @@ class RoomController extends Controller
      */
     public function index()
     {
-        //
+        $rooms = Room::all();
+        return view('rooms',compact('rooms'));
     }
 
     /**
@@ -37,13 +38,13 @@ class RoomController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'=>'required',
+            'name' => 'required',
             'capacity'=> 'required|integer',
             'states' => 'required',
             'hasac' => 'required'
         ]);
         $room = Room::create($request->all());
-        return redirect('/')->with('success', 'Room has been added');
+        return redirect('/rooms')->with('success', 'Room has been added');
     }
 
     /**
@@ -78,13 +79,13 @@ class RoomController extends Controller
     public function update(Request $request, Room $room)
     {
         $request->validate([
-            'name'=>'required',
+            'name' => 'required',
             'capacity'=> 'required|integer',
             'states' => 'required',
             'hasac' => 'required'
         ]);
         $room->update($request->all());
-        return redirect('/')->with('success', 'Room has been Updated');
+        return redirect('/rooms')->with('success', 'Room has been Updated');
     }
 
     /**
@@ -96,6 +97,6 @@ class RoomController extends Controller
     public function destroy(Room $room)
     {
         $room->delete();
-        return redirect('/')->with('success', 'Room has been Deleted');
+        return redirect('/rooms')->with('success', 'Room has been Deleted');
     }
 }

@@ -21,6 +21,7 @@ class CreatePeopleTable extends Migration
             $table->string('cnic');
             $table->string('city', 100);
             $table->string('institute')->nullable();
+            $table->string('rent');
             $table->unsignedinteger('room_id');
             $table->foreign('room_id')->references('id')->on('rooms');
             $table->timestamps();

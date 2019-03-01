@@ -14,7 +14,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group mb-4">
                                         <label>Room Name:</label>
-                                        <input class="form-control" name="name" type="text" placeholder="Enter Room Name">
+                                        <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" type="text" placeholder="Enter Room Name">
                                         @if ($errors->has('name'))
                                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('name') }}</strong>

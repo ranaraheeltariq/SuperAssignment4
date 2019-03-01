@@ -25,16 +25,8 @@
                             <div class="form-group mb-4">
                                 <label>Phone number</label>
                                 <div class="input-group">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown">+92<i class="fa fa-angle-down ml-1"></i></button>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="javascript:;">+92</a>
-                                            <a class="dropdown-item" href="javascript:;">+61</a>
-                                            <a class="dropdown-item" href="javascript:;">+1</a>
-                                            <a class="dropdown-item" href="javascript:;">+7</a>
-                                        </div>
-                                    </div>
-                                    <input class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" type="number" name="phone" value="{{$person->phone}}">
+
+                                    <input class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" type="text" name="phone" value="{{$person->phone}}">
                                     @if ($errors->has('phone'))
                                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('phone') }}</strong>
